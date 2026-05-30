@@ -238,6 +238,15 @@
       <!-- RIGHT COLUMN -->
       <div class="col-lg-6">
 
+          @if(session('exito'))
+              <div class="container mt-3">
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                      <strong>¡Logrado!</strong> {{ session('exito') }}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+              </div>
+          @endif
+
         <!-- Características -->
         <div class="info-card">
           <h6><i class="bi bi-geo-alt-fill me-1" style="color:var(--brand-red)"></i>Características del lugar</h6>
@@ -263,9 +272,147 @@
             <span class="badge-day">{{ $escenario->horarios}}</span>
           </div>
         </div>
-
+        @auth
+          <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalEditar"><b>Editar Escenario</b></button>
+          <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modalEliminar"><b>Eliminar Escenario</b></button>            
+        @endauth
+        
       </div><!-- /right col -->
     </div><!-- /row -->
   </div><!-- /container -->
+
+
+<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="modalEditarLabel">Modificar Datos del Escenario</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <form action="{{ route('escenarios.update', $escenario->id_escenario) }}" method="POST">
+                @csrf
+                @method('PUT') <div class="modal-body">
+                <div class="row">
+                              <div class="col-md-12 mb-3">
+                                 <label class="form-label d-block text-center" text-align: center; >Nombre del Escenario</label>
+                                 <input type="text" name="nombre_escenario" value="{{ $escenario->nombre_escenario }}" class="form-control" required>
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                 <label class="form-label">Municipio</label>
+                                 <select name="municipio" class="form-select">
+                                    <option value="{{ $escenario->municipio }}">{{ $escenario->municipio }}</option>
+                                    <option value="Pereira">Pereira</option>
+                                    <option value="Dosquebradas">Dosquebradas</option>
+                                    <option value="La Virginia">La Virginia</option>
+                                 </select>
+                              </div>
+
+                              <div class="col-md-6 mb-3">
+                                 <label class="form-label">Dirección</label>
+                                 <input type="text" name="direccion" value="{{ $escenario->direccion }}" class="form-control">
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                 <label class="form-label">Deporte</label>
+                                 <select name="deporte" class="form-select">
+                                    <option value="{{ $escenario->deporte }}">{{ $escenario->deporte }}</option>
+                                    <option value="Futbol">Futbol</option>
+                                    <option value="Baloncesto">Baloncesto</option>
+                                    <option value="Tennis">Tennis</option>
+                                    <option value="Bmx">Bmx</option>
+                                    <option value="Natacion">Natación</option>
+                                    <option value=="oTRO">Polideportivo</option>
+                                 </select>
+                              </div>
+
+                              <div class="col-md-6 mb-3">
+                                 <label class="form-label">Latitud</label>
+                                 <input type="number" step="any" value="{{ $escenario->latitud }}" name="latitud" class="form-control">
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                 <label class="form-label">Longitud</label>
+                                 <input type="number" step="any" name="longitud" value="{{ $escenario->longitud }}" class="form-control">
+                              </div>
+
+                              <div class="col-md-4 mb-3">
+                                 <label class="form-label">Capacidad</label>
+                                 <input type="number" name="capacidad" value="{{ $escenario->capacidad }}" class="form-control">
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                 <label class="form-label">Iluminación</label>
+                                 <select name="iluminacion" class="form-select">
+                                    <option value="{{ $escenario->iluminacion }}">{{ $escenario->iluminacion }}</option>
+                                    <option value="Si">Si</option>
+                                    <option value="No">No</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-4 mb-3">
+                                 <label class="form-label">Tipo de Suelo</label>
+                                 <input type="text" name="suelo" class="form-control" value="{{ $escenario->suelo }}" placeholder="Ej: Madera, Cemento">
+                              </div>
+
+                              <div class="col-md-6 mb-3">
+                                 <label class="form-label">Estado</label>
+                                 <select name="estado" class="form-select">
+                                  <option value="{{ $escenario->estado }}">{{ $escenario->estado }}</option>
+                                    <option value="Excelente">Excelente</option>
+                                    <option value="Bueno">Bueno</option>
+                                    <option value="Mantenimiento">En Mantenimiento</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                 <label class="form-label">Baños</label>
+                                 <select name="banos" class="form-select">
+                                    <option value="{{ $escenario->banos }}">{{ $escenario->banos }}</option>
+                                    <option value="Si">Si</option>
+                                    <option value="No">No</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-12 mb-3">
+                                 <label class="form-label d-block text-center">Descripción</label>
+                                 <textarea name="descripcion" value="{{ $escenario->descripcion }}" class="form-control" rows="2">{{ $escenario->descripcion }}</textarea>
+                              </div>
+
+                              <div class="col-md-12 mb-3">
+                                 <label class="form-label d-block text-center">Horarios de Atención</label>
+                                 <textarea name="horarios" class="form-control" value="{{ $escenario->horarios }}" rows="2">{{ $escenario->horarios }}</textarea>
+                              </div>
+                        </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> 
+
+<div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="modalEliminarLabel">¿Confirmar Eliminación?</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-body">
+                <p>¿Estás completamente seguro de que deseas eliminar permanentemente el escenario <strong>{{ $escenario->nombre_escenario }}</strong>?</p>
+                <p class="text-muted"><small>Esta acción no se puede deshacer y el registro se borrará de la base de datos MySQL.</small></p>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                
+                <form action="{{ route('escenarios.destroy', $escenario->id_escenario) }}" method="POST">
+                    @csrf
+                    @method('DELETE') <button type="submit" class="btn btn-danger">Sí, Eliminar Registro</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
   @include('complementos.footer')   

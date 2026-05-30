@@ -33,9 +33,9 @@
                         <label class="form-check-label text-white fw-semibold" for="f-fut">Fútbol</label>
                     </div>
                     <div class="form-check mb-2">
-                        <input class="form-check-input auto-filter" name="deporte[]" value="Tenis" type="checkbox" id="f-ten"
-                        {{ is_array(request('deporte')) && in_array('Tenis', request('deporte')) ? 'checked' : '' }}>
-                        <label class="form-check-label text-white fw-semibold" for="f-ten">Tenis</label>
+                        <input class="form-check-input auto-filter" name="deporte[]" value="Tennis" type="checkbox" id="f-ten"
+                        {{ is_array(request('deporte')) && in_array('Tennis', request('deporte')) ? 'checked' : '' }}>
+                        <label class="form-check-label text-white fw-semibold" for="f-ten">Tennis</label>
                     </div>
                     <div class="form-check mb-2">
                         <input class="form-check-input auto-filter" name="deporte[]" value="Baloncesto" type="checkbox" id="f-bal"

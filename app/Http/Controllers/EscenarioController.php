@@ -10,16 +10,41 @@ class EscenarioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $escenarios = Escenario::with('usuario')->get();
+        // 1. Iniciamos una consulta limpia de Eloquent
+        $query = Escenario::query();
+
+        // 2. Filtro: Buscador por Texto (Nombre del escenario)
+        $query->when($request->filled('buscar'), function ($q) use ($request) {
+            $q->where('nombre_escenario', 'LIKE', '%' . $request->input('buscar') . '%');
+        });
+
+        // 3. Filtro: Municipio
+        $query->when($request->filled('municipio'), function ($q) use ($request) {
+            $q->where('municipio', $request->input('municipio'));
+        });
+
+        // 4. Filtro: Deporte
+        $query->when($request->filled('deporte'), function ($q) use ($request) {
+            $q->where('deporte', $request->input('deporte'));
+        });
+
+        // 5. Filtro: Estado
+        $query->when($request->filled('estado'), function ($q) use ($request) {
+            $q->where('estado', $request->input('estado'));
+        });
+
+        // 6. Ejecutamos la consulta y obtenemos la COLECCIÓN de escenarios filtrados
+        $escenarios = $query->get();
+
         $escenarioAleatorio = Escenario::inRandomOrder()->first();
+
+        // 7. Retornamos la vista principal pasando los escenarios
         return view('escenarios', compact('escenarios', 'escenarioAleatorio'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+  
     public function create()
     {
         return view('escenarios.create');
@@ -31,9 +56,6 @@ class EscenarioController extends Controller
         return view('escenarios.detalle', compact('escenario'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -65,29 +87,54 @@ class EscenarioController extends Controller
         return redirect()->route('escenarios.index')->with('success', 'Escenario creado.');
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Escenario $escenario)
+    public function update(Request $request, $id_escenario)
     {
-        //
+        // 1. Validar rigurosamente los datos que vienen del formulario
+        $datosValidados = $request->validate([
+            'nombre_escenario' => 'required|string|max:255',
+            'descripcion'      => 'nullable|string',
+            'direccion'        => 'required|string',
+            'latitud'          => 'required|numeric|between:-90,90',
+            'longitud'         => 'required|numeric|between:-180,180',
+            'municipio'        => 'required|string',
+            'deporte'          => 'required|string',
+            'estado'           => 'required|string', 
+            'horarios'         => 'nullable|string',
+            'iluminacion'      => 'required|string',
+            'suelo'            => 'required|string',
+            'capacidad'        => 'required|integer',
+            'banos'      => 'required|string',
+
+        ]);
+
+        // 2. Buscar el registro por su ID personalizado
+        $escenario = Escenario::findOrFail($id_escenario);
+
+        // 3. ACTUALIZACIÓN MASIVA UTILIZANDO EL FILLABLE del Modelo
+        $escenario->update($datosValidados);
+
+        // 4. Redireccionar de vuelta a la vista de detalle con una sesión flash de éxito
+        return redirect()->route('escenarios.show', $escenario->id_escenario)
+                         ->with('exito', '¡El escenario se ha actualizado correctamente!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Escenario $escenario)
+    public function destroy($id_escenario)
     {
-        //
-    }
+        // 1. Buscar el registro en la base de datos por su ID personalizado
+        // Si no existe, arroja automáticamente un error 404 en vez de romper el sistema
+        $escenario = Escenario::findOrFail($id_escenario);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Escenario $escenario)
-    {
-        //
+        // 2. Opcional: Si manejas imágenes guardadas físicamente en el Storage, la borramos aquí
+        // if ($escenario->imagen && \Illuminate\Support\Facades\Storage::exists('public/' . $escenario->imagen)) {
+        //     \Illuminate\Support\Facades\Storage::delete('public/' . $escenario->imagen);
+        // }
+
+        // 3. Ejecutar la eliminación del registro en MySQL
+        $escenario->delete();
+
+        // 4. Redireccionar al mapa o listado de escenarios (usa el nombre correcto de tu ruta index)
+        return redirect()->route('escenarios.index') 
+                        ->with('exito', '¡El escenario deportivo ha sido eliminado permanentemente!');
     }
 
     public function mapa(Request $request)

@@ -34,50 +34,50 @@
         </div>
       @endif
 
+   
+
       <section class="container">
-         <nav class="navbar navbar-expand-lg navbar-light mt-3 pt-3">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-               <ul class="navbar-nav mr-auto">
-                  <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                        Departamento
-                     </a>
-                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Risaralda</a>
-                        <a class="dropdown-item" href="#">Atlantico</a>
-                     </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                        Municipio
-                     </a>
-                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">La Virginia</a>
-                        <a class="dropdown-item" href="#">Pereira</a>
-                     </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                        Deporte
-                     </a>
-                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Futbol</a>
-                        <a class="dropdown-item" href="#">Baloncesto</a>
-                     </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                     <a class="nav-link" href="mapa.html">Mapa</a>
-                  </li>
-               </ul>
-               <form class="form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Buscar Escenario" aria-label="Search">
-                  <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Buscar</button>
-               </form>
-            </div>
-         </nav>
+         <form action="{{ route('escenarios.index') }}" method="GET" class="row g-2 align-items-center bg-light p-3 rounded shadow-sm mb-4">
+    
+    <div class="col-md-3">
+        <input type="text" name="buscar" class="form-control" placeholder="Buscar escenario..." value="{{ request('buscar') }}">
+    </div>
+
+    <div class="col-md-2">
+        <select name="municipio" class="form-select">
+            <option value="">Municipio</option>
+            <option value="Pereira" {{ request('municipio') == 'Pereira' ? 'selected' : '' }}>Pereira</option>
+            <option value="Dosquebradas" {{ request('municipio') == 'Dosquebradas' ? 'selected' : '' }}>Dosquebradas</option>
+            <option value="La Virginia" {{ request('municipio') == 'La Virginia' ? 'selected' : '' }}>La Virginia</option>
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <select name="deporte" class="form-select">
+            <option value="">Deporte</option>
+            <option value="Futbol" {{ request('deporte') == 'Futbol' ? 'selected' : '' }}>Fútbol</option>
+            <option value="Baloncesto" {{ request('deporte') == 'Baloncesto' ? 'selected' : '' }}>Baloncesto</option>
+            <option value="Tennis" {{ request('deporte') == 'Tennis' ? 'selected' : '' }}>Tennis</option>
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <select name="estado" class="form-select">
+            <option value="">Estado</option>
+            <option value="Excelente" {{ request('estado') == 'Excelente' ? 'selected' : '' }}>Excelente</option>
+            <option value="Bueno" {{ request('estado') == 'Bueno' ? 'selected' : '' }}>Bueno</option>
+            <option value="Regular" {{ request('estado') == 'Regular' ? 'selected' : '' }}>Regular</option>
+        </select>
+    </div>
+
+    <div class="col-md-3 d-flex gap-2">
+        <button type="submit" class="btn btn-danger w-100 text-white">Buscar</button>
+        <a href="{{ route('escenarios.index') }}" class="btn btn-secondary text-white">Limpiar</a>
+    </div>
+   </form>
          <div class="container mb-5 mt-5">
             @if($escenarios->isEmpty())
-               <div class="alert alert-info">No hay escenarios registrados aún.</div>
+               <div class="alert alert-info">No hay escenarios con esas caracteristicas.</div>
             @endif
             @if(session('success'))
                <div class="alert alert-success alert-dismissible fade show shadow-sm border-0 mb-4" role="alert" style="border-left: 5px solid #198754 !important;">
@@ -118,12 +118,7 @@
                      <a href="{{ route('escenarios.show', $escenario) }}" class="btn btn-danger w-100 py-2 fw-bold rounded-3 m-1">
                         Ver más
                      </a>
-                     @auth
-                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-primary mx-1">Editar</button>
-                        <button type="button" class="btn btn-warning">Eliminar</button>
-                     </div>
-                     @endauth
+                 
                   </div>
                   </div>
                </div>
