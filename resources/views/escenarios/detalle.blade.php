@@ -321,7 +321,7 @@
                                     <option value="Tennis">Tennis</option>
                                     <option value="Bmx">Bmx</option>
                                     <option value="Natacion">Natación</option>
-                                    <option value=="oTRO">Polideportivo</option>
+                                    <option value="Polideportivo">Polideportivo</option>
                                  </select>
                               </div>
 

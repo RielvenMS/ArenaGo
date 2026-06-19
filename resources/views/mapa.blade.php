@@ -13,7 +13,7 @@
     <div class="main-card">
         
         <aside class="sidebar-left">
-            <h6 class="fw-bold text-dark mb-4"><i class="bi bi-funnel-fill text-danger me-2"></i>FILTRAR</h6>
+            <h6 class="fw-bold text-white mb-4"><i class="bi bi-funnel-fill text-danger me-2"></i>FILTRAR</h6>
             <form id="filtroForm">
                 <div class="mb-4">
                     <label class="form-label small fw-bold text-white">MUNICIPIO</label>
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <label class="form-label small fw-bold text-white">DEPORTE</label>
+                    <label class="form-label small fw-bold text-white">DEPORTES</label>
                     <div class="form-check mb-2">
                         <input class="form-check-input auto-filter" name="deporte[]" value="Futbol" type="checkbox" id="f-fut"
                         {{ is_array(request('deporte')) && in_array('Futbol', request('deporte')) ? 'checked' : '' }}>
@@ -41,6 +41,26 @@
                         <input class="form-check-input auto-filter" name="deporte[]" value="Baloncesto" type="checkbox" id="f-bal"
                         {{ is_array(request('deporte')) && in_array('Baloncesto', request('deporte')) ? 'checked' : '' }}>
                         <label class="form-check-label text-white fw-semibold" for="f-ten">Baloncesto</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input auto-filter" name="deporte[]" value="Patinaje" type="checkbox" id="f-bal"
+                        {{ is_array(request('deporte')) && in_array('Patinaje', request('deporte')) ? 'checked' : '' }}>
+                        <label class="form-check-label text-white fw-semibold" for="f-ten">Patinaje</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input auto-filter" name="deporte[]" value="Atletismo" type="checkbox" id="f-bal"
+                        {{ is_array(request('deporte')) && in_array('Atletismo', request('deporte')) ? 'checked' : '' }}>
+                        <label class="form-check-label text-white fw-semibold" for="f-ten">Atletismo</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input auto-filter" name="deporte[]" value="BMX" type="checkbox" id="f-bal"
+                        {{ is_array(request('deporte')) && in_array('BMX', request('deporte')) ? 'checked' : '' }}>
+                        <label class="form-check-label text-white fw-semibold" for="f-ten">BMX</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input auto-filter" name="deporte[]" value="Polideportivo" type="checkbox" id="f-bal"
+                        {{ is_array(request('deporte')) && in_array('Polideportivo', request('deporte')) ? 'checked' : '' }}>
+                        <label class="form-check-label text-white fw-semibold" for="f-ten">Polideportivo</label>
                     </div>
                 </div>
             </form>

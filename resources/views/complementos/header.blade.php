@@ -25,7 +25,12 @@
         <!-- Menu de navegacion-->
         <nav class="navbar navbar-expand-lg navbar-dark" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><img class="img-fluid" src="{{ asset('images/prueba1.png') }}" alt="..." /></a>
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fa-solid fa-basketball text-white" style="font-size: 30px;"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3 text-white fw-bold" style="font-size: 30px;">ArenaGo
+                </div>
+               
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
@@ -35,7 +40,7 @@
                         <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="/escenarios">Escenarios</a></li>
                         <li class="nav-item"><a class="nav-link" href="/mapa">Mapa</a></li>
-                         @guest
+                        @guest
                             <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                         @endguest
                         @auth
