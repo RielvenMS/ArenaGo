@@ -33,9 +33,12 @@
                                     <option value="Futbol">Futbol</option>
                                     <option value="Baloncesto">Baloncesto</option>
                                     <option value="Tennis">Tennis</option>
+                                    <option value="Atletismo">Atletismo</option>
+                                    <option value="Patinaje">Patinaje</option>
                                     <option value="Bmx">Bmx</option>
-                                    <option value="Natacion">Natación</option>
                                     <option value="Polideportivo">Polideportivo</option>
+                                    <option value="Estadio">Estadio</option>
+                                    <option value="Gimnacio">Gimnacio</option>
                                  </select>
                               </div>
 

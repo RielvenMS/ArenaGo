@@ -272,6 +272,16 @@
             <span class="badge-day">{{ $escenario->horarios}}</span>
           </div>
         </div>
+        <!-- Fecha Registros -->
+        <div class="info-card">
+          <h6><i class="bi bi-clock me-1" style="color:var(--brand-red)"></i>Fechas</h6>
+          <div class="schedule-row">
+            <i class="bi bi-clock text-primary"></i> Creado: 
+            <span class="badge-day">{{ $escenario->created_at}}</span>
+            <i class="bi bi-clock text-primary"></i> Actualizado: 
+            <span class="badge-day">{{ $escenario->updated_at}}</span>
+          </div>
+        </div>
         @auth
           <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalEditar"><b>Editar Escenario</b></button>
           <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modalEliminar"><b>Eliminar Escenario</b></button>            
@@ -319,9 +329,12 @@
                                     <option value="Futbol">Futbol</option>
                                     <option value="Baloncesto">Baloncesto</option>
                                     <option value="Tennis">Tennis</option>
+                                    <option value="Atletismo">Atletismo</option>
+                                    <option value="Patinaje">Patinaje</option>
                                     <option value="Bmx">Bmx</option>
-                                    <option value="Natacion">Natación</option>
                                     <option value="Polideportivo">Polideportivo</option>
+                                    <option value="Estadio">Estadio</option>
+                                    <option value="Gimnacio">Gimnacio</option>
                                  </select>
                               </div>
 

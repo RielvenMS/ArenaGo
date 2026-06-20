@@ -62,6 +62,8 @@
             <option value="Patinaje" {{ request('deporte') == 'Patinaje' ? 'selected' : '' }}>Patinaje</option>
             <option value="BMX" {{ request('deporte') == 'BMX' ? 'selected' : '' }}>BMX</option>
             <option value="Polideportivo" {{ request('deporte') == 'Polideportivo' ? 'selected' : '' }}>Polideportivo</option>
+            <option value="Estadio" {{ request('deporte') == 'Estadio' ? 'selected' : '' }}>Estadio</option>
+            <option value="Gimnacio" {{ request('deporte') == 'Gimnacio' ? 'selected' : '' }}>Gimnacio</option>
         </select>
     </div>
 

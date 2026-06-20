@@ -62,6 +62,16 @@
                         {{ is_array(request('deporte')) && in_array('Polideportivo', request('deporte')) ? 'checked' : '' }}>
                         <label class="form-check-label text-white fw-semibold" for="f-ten">Polideportivo</label>
                     </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input auto-filter" name="deporte[]" value="Estadio" type="checkbox" id="f-bal"
+                        {{ is_array(request('deporte')) && in_array('Estadio', request('deporte')) ? 'checked' : '' }}>
+                        <label class="form-check-label text-white fw-semibold" for="f-ten">Estadio</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input auto-filter" name="deporte[]" value="Gimnacio" type="checkbox" id="f-bal"
+                        {{ is_array(request('deporte')) && in_array('Gimnacio', request('deporte')) ? 'checked' : '' }}>
+                        <label class="form-check-label text-white fw-semibold" for="f-ten">Gimnacio</label>
+                    </div>
                 </div>
             </form>
         </aside>
@@ -75,6 +85,7 @@
 @include('complementos.footer')
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -100,8 +111,19 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(`/api/escenarios?${params}`)
             .then(response => response.json())
             .then(data => {
-                console.log("Datos recibidos:", data); // Mira esto en la consola (F12)
+                console.log("Datos recibidos:", data);
                 markerGroup.clearLayers();
+
+                if (data.length === 0) {
+                    Swal.fire({
+                        title: 'Sin resultados',
+                        text: 'No se encontraron escenarios deportivos con las características seleccionadas.',
+                        icon: 'warning',
+                        confirmButtonColor: '#e63946', 
+                        confirmButtonText: 'Entendido'
+                    });
+                    return;
+                }
 
                 data.forEach(escenario => {
                     if (escenario.latitud && escenario.longitud) {
