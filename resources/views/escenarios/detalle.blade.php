@@ -368,8 +368,9 @@
                                  <label class="form-label">Estado</label>
                                  <select name="estado" class="form-select">
                                   <option value="{{ $escenario->estado }}">{{ $escenario->estado }}</option>
-                                    <option value="Excelente">Excelente</option>
-                                    <option value="Bueno">Bueno</option>
+                                    <option value="Excelente">Bueno</option>
+                                    <option value="Bueno">Regular</option>
+                                    <option value="Mantenimiento">Malo</option>
                                     <option value="Mantenimiento">En Mantenimiento</option>
                                  </select>
                               </div>

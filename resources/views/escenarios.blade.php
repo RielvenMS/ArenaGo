@@ -79,6 +79,7 @@
     <div class="col-md-3 d-flex gap-2">
         <button type="submit" class="btn btn-danger w-100 text-white">Buscar</button>
         <a href="{{ route('escenarios.index') }}" class="btn btn-secondary text-white">Limpiar</a>
+        <button type="submit" class="btn btn-danger w-100 text-white disabled">{{ $escenarios->count() }}</button>
     </div>
    </form>
          <div class="container mb-5 mt-5">

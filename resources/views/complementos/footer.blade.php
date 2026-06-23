@@ -70,8 +70,9 @@
                               <div class="col-md-6 mb-3">
                                  <label class="form-label">Estado</label>
                                  <select name="estado" class="form-select">
-                                    <option value="Excelente">Excelente</option>
-                                    <option value="Bueno">Bueno</option>
+                                    <option value="Excelente">Bueno</option>
+                                    <option value="Bueno">Regular</option>
+                                    <option value="Mantenimiento">Malo</option>
                                     <option value="Mantenimiento">En Mantenimiento</option>
                                  </select>
                               </div>
