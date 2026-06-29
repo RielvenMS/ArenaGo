@@ -39,7 +39,7 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Patinaje</div>
-                                <div class="portfolio-caption-subheading text-muted">Conoce más del deporte</div>
+                                <div class="portfolio-caption-subheading text-muted">Un deporte que fortalece el cuerpo, desarrolla habilidades y fomenta la superación personal.</div>
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Bmx</div>
-                                <div class="portfolio-caption-subheading text-muted">Deporte a dos ruedas</div>
+                                <div class="portfolio-caption-subheading text-muted">Un deporte que impulsa la coordinación, la confianza y el espíritu de superación.</div>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Tenis</div>
-                                <div class="portfolio-caption-subheading text-muted">Deporte de raqueta</div>
+                                <div class="portfolio-caption-subheading text-muted">Un deporte que fortalece la concentración, mejora la técnica y promueve la superación constante.</div>
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Atletismo</div>
-                                <div class="portfolio-caption-subheading text-muted">Branding</div>
+                                <div class="portfolio-caption-subheading text-muted">Un deporte que desarrolla la condición física, fortalece la perseverancia y fomenta la superación personal.</div>
                             </div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Juegos de mesa</div>
-                                <div class="portfolio-caption-subheading text-muted">Website Design</div>
+                                <div class="portfolio-caption-subheading text-muted">Una actividad que estimula el pensamiento, fortalece la toma de decisiones y fomenta la convivencia.</div>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Futbol</div>
-                                <div class="portfolio-caption-subheading text-muted">Photography</div>
+                                <div class="portfolio-caption-subheading text-muted">Un deporte que fortalece la cooperación, mejora las habilidades físicas y fomenta el espíritu de superación.</div>
                             </div>
                         </div>
                     </div>
